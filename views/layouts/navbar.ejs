@@ -1,24 +1,29 @@
 <nav class="navbar navbar-expand-lg navbar-dark" id="mainNav">
-    <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="/">Backend WeatherApp</a>
+    <div class="container px-1 px-lg-1 pr-lg-0">
+        <a class="navbar-brand" href="/?sessionId=<%= sessionId %>">Backend WeatherApp</a> 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/apod">Astronomy picture of the day</a></li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/news">News by keyword</a></li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/?sessionId=<%= sessionId %>">Home</a></li> 
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/apod?sessionId=<%= sessionId %>">Astronomy picture of the day</a></li> 
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/news?sessionId=<%= sessionId %>">News by keyword</a></li> 
+                <% if (user) { %>
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="/history?sessionId=<%= sessionId %>">History</a> 
+                    </li>
+                <% } %>
             </ul>
-            <div class="d-flex ms-auto">
+            <div class="d-flex ms-auto justify-content-end">
                 <% if (!user) { %>
-                    <a href="/login" class="btn btn-primary">Login</a>
-                    <a href="/signup" class="btn btn-secondary ml-2">Sign up</a>
-                  <% } else { %>
+                    <a href="/login?sessionId=<%= sessionId %>" class="btn btn-primary ml-2">Login</a> <!-- questionable session id -->
+                <% } else { %>
+                    <p class="my-auto mx-2">Logged as</p>
                     <a href="<%= user.is_admin ? '/admin' : '' %>" class="btn btn-primary rounded-3"><%= user.username %></a>&nbsp;&nbsp;
-                    <a href="/logout" class="btn btn-secondary">Logout</a>
-                  <% } %>
+                    <a href="/logout?sessionId=<%= sessionId %>" class="btn btn-secondary">Logout</a> <!-- questionable session id -->
+                <% } %>
             </div>
         </div>
     </div>
