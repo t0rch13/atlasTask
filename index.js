@@ -93,11 +93,11 @@ app.post("/weatherForm", async (req, res) => {
 
 app.get("/weather", async (req, res) => {
   const sessionId = req.query.sessionId;
-  const user = userStore.get(sessionId);
+  const user = userStore.get(sessionId);    
+  const city = req.query.city || "Astana";
+  console.log(city)
   
   try {
-    const city = req.query.city || "Astana";
-    console.log(city)
     const weatherNewsData = await getWeatherNewsData(city);
 
     if (!weatherNewsData) {
@@ -107,8 +107,7 @@ app.get("/weather", async (req, res) => {
     res.render("weather", { 
       sessionId: sessionId ? sessionId : null,
       user: user ? user : null,
-      city,
-      weatherNewsData,
+      weatherNewsData: weatherNewsData
     });
     if (user){
       await UserRequest.create({user: user._id, request_route: "/weather", request_data: city, timestamp: new Date(), response_data: weatherNewsData});
@@ -118,6 +117,18 @@ app.get("/weather", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
+//search news form
+
+app.post('/search-news', async (req, res) => {
+  const sessionId = req.body.sessionId;
+  console.log(sessionId)
+
+  const keyword = req.body.keyword;
+  res.redirect(`/news?sessionId=${sessionId}&keyword=${keyword}`);
+});
+
+//news page
 
 app.get('/news', async (req, res) => {
   const sessionId = req.query.sessionId;
@@ -136,14 +147,7 @@ app.get('/news', async (req, res) => {
   }
 });
 
-app.post('/search-news', async (req, res) => {
-  const sessionId = req.body.sessionId;
-  console.log(sessionId)
-
-  const keyword = req.body.keyword;
-  res.redirect(`/news?sessionId=${sessionId}&keyword=${keyword}`);
-});
-
+//apod page
 
 app.get('/apod', async (req, res) => {
   const sessionId = req.query.sessionId;
@@ -161,12 +165,61 @@ app.get('/apod', async (req, res) => {
   }
 });
 
+//history page
+
+app.get("/history", async (req, res) => {
+  try {
+    const sessionId = req.query.sessionId;
+    const user = userStore.get(sessionId); 
+
+    if (!user) {
+      return res.redirect("/login"); 
+    }
+
+    const userRequests = await UserRequest.find({ user: user._id }).sort({ timestamp: -1 });
+
+    res.render("history", { sessionId: sessionId ? sessionId : null, user: user ? user : null, userRequests: userRequests });
+  } catch (error) {
+    console.error("Error retrieving user's requests history:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+//view user's previous requests data
+
+app.get("/view-response", async (req, res) =>{
+  const sessionId = req.query.sessionId;
+  const user = userStore.get(sessionId);
+
+  try {
+    const requestId = req.query.requestId;
+    const requestObj = await UserRequest.findOne({_id: requestId});
+    const requestRoute = requestObj.request_route;
+    const route = requestRoute.slice(1);
+    const responseData = requestObj.response_data;
+    console.log(route)
+    if(route == "weather"){
+      res.render(route, {sessionId: sessionId ? sessionId : null, user: user ? user : null , weatherNewsData: responseData});
+    } else if (route == "apod"){
+      res.render(route, {sessionId: sessionId ? sessionId : null, user: user ? user : null , apod: responseData});
+    } else if (route == "news"){
+      res.render(route, {sessionId: sessionId ? sessionId : null, user: user ? user : null , articles: responseData});
+    }
+    
+  } catch (error) {
+    console.error("Error retrieving user request's response data:", error);
+    res.status(500).send("Internal Server Error");
+  }
+  
+});
+
 
 app.listen(PORT, function (err) {
   if (err) console.log(err);
   console.log("Server listening on PORT", PORT);
 });
 
+//utility function 
 
 function generateSessionId() {
   return uuidv4();

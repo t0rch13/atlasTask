@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/style.css">
 
-    <title>Weather in <%= city %></title>
+    <title>Weather in <%= weatherNewsData.city %></title>
 </head>
 <body>
     
@@ -15,10 +15,10 @@
     <div class="container">
         <h1>Weather</h1>
         <div class="weather-info">
-            <h2>Temperature is <%= weatherNewsData.temp %> Celsius in <%= city %></h1>
+            <h2>Temperature is <%= weatherNewsData.temp %> Celsius in <%= weatherNewsData.city %></h1>
             <h3>The weather currently is <%= weatherNewsData.description %></h2>
             <img src="<%= weatherNewsData.imgURL %>" class="img-fluid" alt="Weather Image">
-            <h3>Coordinates of <%= city %> are lon: <%= weatherNewsData.longitude %>, lat: <%= weatherNewsData.latitude %></h3>
+            <h3>Coordinates of <%= weatherNewsData.city %> are lon: <%= weatherNewsData.longitude %>, lat: <%= weatherNewsData.latitude %></h3>
             <h3>Temperature feels like <%= weatherNewsData.feelsLike %> Celsius</h3>
             <h3>Humidity <%= weatherNewsData.humidity %></h3>
             <h3>Wind Speed is <%= weatherNewsData.windSpeed %> km/h</h3>
@@ -39,7 +39,7 @@
             </ul>
         </div>
 
-        <h2><%= city %> on the Map</h2>
+        <h2><%= weatherNewsData.city %> on the Map</h2>
         <div id="map" data-lat="<%=weatherNewsData.latitude%>" data-lng="<%=weatherNewsData.longitude%>"></div>
     </div>
 

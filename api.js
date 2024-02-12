@@ -33,6 +33,7 @@ async function getWeatherNewsData(city) {
 
 
     return {
+        city: city,
         temp: weatherData.main.temp,
         description: weatherData.weather[0].description,
         imgURL: `https://openweathermap.org/img/wn/${icon}@2x.png`,

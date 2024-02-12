@@ -70,6 +70,13 @@ p {
     height: auto;
 }
 
+.request-item {
+    background-color: #364f8a; /* Slightly lighter background color */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
 .latest-news h2 {
     font-size: 24px; /* Larger Font Size for Article Titles */
     color: white; /* White Text Color */
