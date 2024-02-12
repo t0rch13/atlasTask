@@ -210,7 +210,41 @@ app.get("/view-response", async (req, res) =>{
     console.error("Error retrieving user request's response data:", error);
     res.status(500).send("Internal Server Error");
   }
-  
+});
+
+//admin page
+
+app.get("/admin", async (req, res) => {
+  const sessionId = req.query.sessionId;
+  const user = userStore.get(sessionId);
+
+  if (!user || !user.is_admin) {
+    return res.redirect("/"); 
+  }
+
+  const users = await User.find();
+
+  res.render("admin", { sessionId: sessionId, user: user, users: users });
+
+});
+
+app.post("/admin/createUser", async (req, res) => {
+  const { username, password } = req.body;
+  const sessionId = req.body.sessionId;
+  const user = userStore.get(sessionId);
+
+  if (!user || !user.is_admin) {
+    return res.redirect(`/?sessionId=${sessionId}`); 
+  }
+
+  try {
+    // Create a new user object with the provided username and password
+    const newUser = await User.create({ username, password, creation_date: new Date(), update_date: new Date(), is_admin: false });
+    res.redirect(`/admin?sessionId=${sessionId}`);
+  } catch (error) {
+    console.error("Error creating user:", error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 

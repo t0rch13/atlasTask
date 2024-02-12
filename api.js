@@ -2,7 +2,7 @@ const axios = require("axios");
 const WEATHER_API_KEY = "0cf3f5de822ed6c4e1bdb6901da1036e";
 const NEWS_API_KEY = "27df3cb829584967b560725662dc7f47";
 const GOOGLE_MAPS_API_KEY = "AIzaSyAGiuA9tp6RdD4No9aEzZ438n38NyMIN7M";
-const NASA_API_KEY = "FYUgxA9FfcQbu2CxnHsUuNhfstLZjE24m9Dzykew";
+const NASA_API_KEY = "3Ep40Jw8MTB6Uc1oVkDthdLbWrP3b4ohyFM2eKz7";
 
 async function getWeatherNewsData(city) {
     const fromDate = getFromDate();

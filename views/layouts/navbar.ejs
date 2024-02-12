@@ -18,13 +18,13 @@
             </ul>
             <div class="d-flex ms-auto justify-content-end">
                 <% if (!user) { %>
-                    <a href="/login?sessionId=<%= sessionId %>" class="btn btn-primary ml-2">Login</a> <!-- questionable session id -->
+                    <a href="/login?sessionId=<%= sessionId %>" class="btn btn-primary ml-2">Login</a>
                 <% } else { %>
                     <p class="my-auto mx-2">Logged as</p>
-                    <a href="<%= user.is_admin ? '/admin' : '' %>" class="btn btn-primary rounded-3"><%= user.username %></a>&nbsp;&nbsp;
-                    <a href="/logout?sessionId=<%= sessionId %>" class="btn btn-secondary">Logout</a> <!-- questionable session id -->
+                    <a href="<%= user.is_admin ? '/admin?sessionId=' + sessionId : '' %>" class="btn btn-primary rounded-3"><%= user.username %></a>&nbsp;&nbsp;
+                    <a href="/logout?sessionId=<%= sessionId %>" class="btn btn-secondary">Logout</a>
                 <% } %>
-            </div>
+            </div>            
         </div>
     </div>
 </nav>

@@ -100,3 +100,97 @@ p {
 .article-link:hover {
     color: hotpink;
 }
+
+
+.card {
+    background-color: #364f8a; /* Darker Blue Background Color */
+    color: white; /* White Text Color */
+}
+
+.card-header {
+    background-color: #1e2952; /* Dark Blue Background Color */
+    color: white; /* White Text Color */
+}
+
+.form-group label {
+    color: white; /* White Text Color */
+}
+
+.form-control {
+    background-color: #1e2952; /* Dark Blue Background Color */
+    color: white; /* White Text Color */
+    border-color: #364f8a; /* Darker Blue Border Color */
+}
+
+.form-control:focus {
+    background-color: #1e2952; /* Dark Blue Background Color */
+    color: white; /* White Text Color */
+    border-color: #ffd700; /* Yellow Border Color on Focus (adjust as needed) */
+}
+
+.btn-primary {
+    background-color: #ffd700; /* Yellow Background Color for the button */
+    color: #1e2952; /* Dark Blue Text Color */
+    border-color: #ffd700; /* Yellow Border Color */
+}
+
+.btn-primary:hover {
+    background-color: #1e2952; /* Dark Blue Background Color on hover */
+    color: white; /* White Text Color on hover */
+}
+
+/* Dark blue style for users list */
+.list-group-item {
+    background-color: #364f8a; /* Darker Blue Background Color */
+    color: white; /* White Text Color */
+    border: none; /* Remove border */
+}
+
+/* Dark blue style for modal form */
+.modal-content {
+    background-color: #364f8a; /* Darker Blue Background Color */
+    color: white; /* White Text Color */
+}
+
+.modal-header {
+    border-bottom: none; /* Remove border bottom */
+}
+
+.modal-title {
+    color: white; /* White Text Color */
+}
+
+.modal-body {
+    color: white; /* White Text Color */
+}
+
+.form-group label {
+    color: white; /* White Text Color */
+}
+
+.form-control {
+    background-color: #1e2952; /* Dark Blue Background Color */
+    color: white; /* White Text Color */
+    border-color: #364f8a; /* Darker Blue Border Color */
+}
+
+.form-control:focus {
+    background-color: #1e2952; /* Dark Blue Background Color */
+    color: white; /* White Text Color */
+    border-color: #ffd700; /* Yellow Border Color on Focus (adjust as needed) */
+}
+
+.btn-primary {
+    background-color: #ffd700; /* Yellow Background Color for the button */
+    color: #1e2952; /* Dark Blue Text Color */
+    border-color: #ffd700; /* Yellow Border Color */
+}
+
+.btn-primary:hover {
+    background-color: #1e2952; /* Dark Blue Background Color on hover */
+    color: white; /* White Text Color on hover */
+}
+
+.list-group-item div {
+    display: block;
+}
