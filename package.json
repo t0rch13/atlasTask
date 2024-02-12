@@ -1,0 +1,22 @@
+{
+  "name": "backend_atlas",
+  "version": "1.0.0",
+  "description": "This is a project for the assignment 3 of AITU: Backend course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.5",
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.9",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.1.1",
+    "nodemon": "^3.0.3",
+    "uuid": "^9.0.1"
+  }
+}

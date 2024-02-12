@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+
+    <title>Latest News</title>
+</head>
+<body>
+    
+    <%- include('layouts/navbar'); -%>
+
+    <div class="container">
+        <h1>Latest News by keyword</h1>
+        <form action="/search-news" method="get">
+            <label for="keyword">Keyword:</label>
+            <input type="text" id="keyword" name="keyword" placeholder="Enter keyword for news search">
+            <button type="submit">Search</button>
+        </form>
+        <div class="latest-news">
+            <ul class="article-list">
+                <% if(articles) { %>
+                    <% articles.forEach(article => { %>
+                        <div class="col-md-6 mb-4">
+                            <div class="article-item">
+                                <% if(article.urlToImage) { %>
+                                    <img src="<%= article.urlToImage %>" alt="Article Image" class="img-fluid">
+                                <% } %>
+                                <div class="news-content">
+                                    <h2><a href="<%= article.url %>" target="_blank" class="article-link">
+                                        <%= article.title %>
+                                    </a></h2>
+                                    <p><%= article.description %></p>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+
+    <%- include('layouts/footer'); -%> 
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

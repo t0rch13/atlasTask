@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+
+    <title>Weather in <%= city %></title>
+</head>
+<body>
+    
+    <%- include('layouts/navbar'); -%>
+
+    <div class="container">
+        <h1>Weather</h1>
+        <div class="weather-info">
+            <h2>Temperature is <%= weatherNewsData.temp %> Celsius in <%= city %></h1>
+            <h3>The weather currently is <%= weatherNewsData.description %></h2>
+            <img src="<%= weatherNewsData.imgURL %>" class="img-fluid" alt="Weather Image">
+            <h3>Coordinates of <%= city %> are lon: <%= weatherNewsData.longitude %>, lat: <%= weatherNewsData.latitude %></h3>
+            <h3>Temperature feels like <%= weatherNewsData.feelsLike %> Celsius</h3>
+            <h3>Humidity <%= weatherNewsData.humidity %></h3>
+            <h3>Wind Speed is <%= weatherNewsData.windSpeed %> km/h</h3>
+            <h3>Country code: <%= weatherNewsData.countryCode %></h3>
+        </div>
+
+        <h2>Latest News:</h2>
+        <div class="latest-news">
+            <ul class="article-list">
+                <% weatherNewsData.articles.forEach(article => { %>
+                    <li class="article-item">
+                        <a href="<%= article.url %>" target="_blank" class="article-link">
+                            <%= article.title %>
+                        </a>
+                        - <%= article.description %>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+
+        <h2><%= city %> on the Map</h2>
+        <div id="map" data-lat="<%=weatherNewsData.latitude%>" data-lng="<%=weatherNewsData.longitude%>"></div>
+    </div>
+
+    <script src="/map.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%=weatherNewsData.apiKeyMaps%>&callback=initMap"></script>
+
+    <%- include('layouts/footer'); -%> 
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

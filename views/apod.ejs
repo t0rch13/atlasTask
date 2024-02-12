@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <%- include('layouts/navbar'); -%>
+
+  <div class="container">
+    <h1>Astronomy Picture of the Day</h1>
+    
+    <% if (apod) { %>
+      <img src="<%= apod.hdurl %>" class="img-fluid" alt="APOD Image">
+      <h2><%= apod.title %></h2>
+      <p><%= apod.explanation %></p>
+      <p>Date: <%= apod.date %></p>
+    <% } else { %>
+      <p>Error loading APOD data</p>
+    <% } %>
+
+  </div>
+
+  <%- include('layouts/footer'); -%> 
+
+
+</body>
+</html>

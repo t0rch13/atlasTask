@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/style.css">
+  <title>Backend: Weather App</title>
+</head>
+<body>
+
+  <%- include('layouts/navbar'); -%>
+
+  <h1>Welcome to the Weather App</h1>
+  <p>Welcome to multifunctional weather app that can provide you explicit data about weather conditions of the certain city, 
+    latest news about selected city and city location on the googlemaps. Also it can provide the Astronomy picture of the day</p>
+  <p>Check the weather for a specific city:</p>
+  <form action="/weatherForm" method="post">
+    <input type="text" name="city" placeholder="Enter city name" required>
+    <input type="hidden" name="sessionId" id="sessionIdInput">
+    <button type="submit">Get Weather</button>
+  </form>
+
+  <script>
+    // Function to extract sessionId from URL query parameters
+    function getSessionIdFromUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('sessionId');
+    }
+    
+    // Populate sessionId into the hidden input field when the page loads
+    window.addEventListener('DOMContentLoaded', () => {
+      const sessionId = getSessionIdFromUrl();
+      document.getElementById('sessionIdInput').value = sessionId;
+    });
+  </script>
+
+  <%- include('layouts/footer'); -%> 
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
