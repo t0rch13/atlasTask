@@ -31,6 +31,7 @@ async function getWeatherNewsData(city) {
       articles = 'No articles found';
     }
 
+
     return {
         temp: weatherData.main.temp,
         description: weatherData.weather[0].description,

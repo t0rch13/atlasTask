@@ -78,8 +78,9 @@ app.get('/logout', (req, res) => {
 
 app.post("/weatherForm", async (req, res) => {
   const sessionId = req.body.sessionId;
-  console.log(sessionId)
-  const city = req.query.city || "Astana";
+  
+  const city = req.body.city || "Astana";
+  console.log(city)
   res.redirect(`/weather?sessionId=${sessionId}&city=${city}`);
 });
 
@@ -91,6 +92,7 @@ app.get("/weather", async (req, res) => {
   
   try {
     const city = req.query.city || "Astana";
+    console.log(city)
     const weatherNewsData = await getWeatherNewsData(city);
 
     if (!weatherNewsData) {
